@@ -14,32 +14,92 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    
+    UIMutableUserNotificationAction *yesAction = [UIMutableUserNotificationAction new];
+    yesAction.identifier = @"yes_action_id";
+    yesAction.title = @"Yes";
+    yesAction.activationMode = UIUserNotificationActivationModeForeground;
+    yesAction.destructive = NO;
+    yesAction.authenticationRequired = NO;
+
+    UIMutableUserNotificationAction *noAction = [UIMutableUserNotificationAction new];
+    noAction.identifier = @"no_action_id";
+    noAction.title = @"No";
+    noAction.activationMode = UIUserNotificationActivationModeBackground;
+    noAction.destructive = YES;
+    noAction.authenticationRequired = YES;
+
+    UIMutableUserNotificationAction *maybeAction = [UIMutableUserNotificationAction new];
+    maybeAction.identifier = @"maybe_action_id";
+    maybeAction.title = @"Maybe";
+    maybeAction.activationMode = UIUserNotificationActivationModeBackground;
+    maybeAction.authenticationRequired = NO;
+    maybeAction.behavior = UIUserNotificationActionBehaviorTextInput;
+    maybeAction.destructive = NO;
+    
+    // First create the category
+    UIMutableUserNotificationCategory *demoCategory = [UIMutableUserNotificationCategory new];
+    demoCategory.identifier = @"demo_category";
+    [demoCategory setActions:@[yesAction, noAction, maybeAction] forContext:UIUserNotificationActionContextDefault];
+    [demoCategory setActions:@[yesAction, maybeAction] forContext:UIUserNotificationActionContextMinimal];
+    
+    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:[NSSet setWithObject:demoCategory]];
+    [application registerUserNotificationSettings:mySettings];
+    [application registerForRemoteNotifications];
+    
+    NSDictionary *notif = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (notif != nil) {
+        //...
+    }
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    NSLog(@"%@", notificationSettings);
+//    [application currentUserNotificationSettings]
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler {
+    completionHandler();
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler {
+    NSLog(@"%@, %@", identifier, userInfo);
+    completionHandler();
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    NSLog(@"%@", notification);
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    NSLog(@"%@", userInfo);
+}
+
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+//    UILocalNotification *localNotif = [UILocalNotification new];
+//    localNotif.alertBody = @"Local notification";
+//    localNotif.soundName = UILocalNotificationDefaultSoundName;
+//    [application cancelAllLocalNotifications];
+//    [application presentLocalNotificationNow:localNotif];
+//    completionHandler(UIBackgroundFetchResultNewData);
+//}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"Registration successful, device token: %@", deviceToken);
+    const char *data = [deviceToken bytes];
+    NSMutableString *token = [NSMutableString string];
+    for (int i = 0; i < [deviceToken length]; i++)
+        [token appendFormat:@"%02.2hhX", data[i]];
+    NSLog(@"Token = %@", token);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"%@", error.localizedDescription);
 }
 
 @end

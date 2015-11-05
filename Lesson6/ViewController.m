@@ -9,19 +9,21 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)sendLocalNotificationDidClick:(id)sender {
+    UILocalNotification *localNotif = [UILocalNotification new];
+    localNotif.fireDate = [NSDate.new dateByAddingTimeInterval:5];
+    localNotif.timeZone = [NSTimeZone defaultTimeZone];
+    localNotif.alertBody = @"This is a local notification";
+    localNotif.alertTitle = @"Hello!";
+    localNotif.soundName = UILocalNotificationDefaultSoundName;
+    localNotif.applicationIconBadgeNumber = 1;
+    localNotif.userInfo = @{ @"key" : @"value" };
+    localNotif.category = @"demo_category";
+    [UIApplication.sharedApplication scheduleLocalNotification:localNotif];
 }
 
 @end

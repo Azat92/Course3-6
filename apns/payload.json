@@ -1,0 +1,6 @@
+{
+    "aps" : {
+        "alert" : "Is weather fine?",
+        "category" : "demo_category"
+    }
+}
