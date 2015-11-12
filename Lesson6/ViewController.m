@@ -7,23 +7,58 @@
 //
 
 #import "ViewController.h"
+#import "NotesViewController.h"
+#import "KeyChainHelper.h"
 
-@interface ViewController ()
+@interface ViewController () {
+    BOOL *isAuthiorized;
+}
 @end
 
 @implementation ViewController
 
+-(void)viewDidLoad{
+    [super viewDidLoad];
+}
+
 - (IBAction)sendLocalNotificationDidClick:(id)sender {
-    UILocalNotification *localNotif = [UILocalNotification new];
-    localNotif.fireDate = [NSDate.new dateByAddingTimeInterval:5];
-    localNotif.timeZone = [NSTimeZone defaultTimeZone];
-    localNotif.alertBody = @"This is a local notification";
-    localNotif.alertTitle = @"Hello!";
-    localNotif.soundName = UILocalNotificationDefaultSoundName;
-    localNotif.applicationIconBadgeNumber = 1;
-    localNotif.userInfo = @{ @"key" : @"value" };
-    localNotif.category = @"demo_category";
-    [UIApplication.sharedApplication scheduleLocalNotification:localNotif];
+    if (![self searchNameInKeychain]) {
+        UILocalNotification *localNotif = [UILocalNotification new];
+        localNotif.fireDate = [NSDate.new dateByAddingTimeInterval:5];
+        localNotif.timeZone = [NSTimeZone defaultTimeZone];
+        localNotif.alertBody = @"Введите своё имя";
+        localNotif.alertTitle = @"Приглашение";
+        localNotif.soundName = UILocalNotificationDefaultSoundName;
+        localNotif.applicationIconBadgeNumber = 1;
+        localNotif.userInfo = @{ @"key" : @"value" };
+        localNotif.category = @"demo_category";
+        [UIApplication.sharedApplication scheduleLocalNotification:localNotif];
+        return;
+    }
+    [self showAccessErrorAlert];
+    
+}
+
+-(NSData*)searchNameInKeychain{
+    return [[KeyChainHelper sharedKeyChain] find:@"USER_NAME"];
+}
+
+-(void)showAccessErrorAlert{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка"
+                                                    message:@"Нет доступа"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+- (IBAction)NotesDidClick:(id)sender {
+    NSData * data = [self searchNameInKeychain];
+    if(data == nil) [self showAccessErrorAlert];
+    else            [self performSegueWithIdentifier:@"toNotesID" sender:self];
+    
+
+
 }
 
 @end

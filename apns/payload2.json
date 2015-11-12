@@ -1,0 +1,13 @@
+{
+    "aps" : {
+        "alert" : {
+            "title" : "New comment",
+            "body" : "textextext"
+        },
+        "category" : "demo_category",
+        "content-available" : 1,
+        "badge" : 1
+    },
+    "usrID" : "2",
+    "noteID" : "1"
+}
