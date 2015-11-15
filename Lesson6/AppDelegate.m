@@ -295,8 +295,11 @@
         
         
         NSString *banReason = [[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] objectForKey:@"body"];
+        
+        [self handleBanRequest:isBan];
+        
         if ( application.applicationState != UIApplicationStateActive ) {
-            [self handleBanRequest:isBan];
+            
             UILocalNotification *localNotif = [UILocalNotification new];
             localNotif.alertBody = banReason;
             localNotif.alertTitle = @"Ban";
@@ -318,8 +321,6 @@
                                        handler:^(UIAlertAction * action) {
                                            
                                            [alert dismissViewControllerAnimated:YES completion:nil];
-                                           [self handleBanRequest:isBan];
-                                           
                                        }];
             [alert addAction:okAction];
             [ROOTVIEW presentViewController:alert animated:YES completion:nil];
