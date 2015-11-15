@@ -33,8 +33,8 @@
     
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Cache.sqlite"];
     
-//        [self deleteAllCache];
-        [self addTestObjects];
+    //        [self deleteAllCache];
+    [self addTestObjects];
     
     [self setupNotifications];
     
@@ -130,17 +130,19 @@
     replyAction.behavior = UIUserNotificationActionBehaviorTextInput;
     replyAction.destructive = NO;
     
-    // First create the category
     UIMutableUserNotificationCategory *demoCategory = [UIMutableUserNotificationCategory new];
+    UIMutableUserNotificationCategory *banCategory = [UIMutableUserNotificationCategory new];
     demoCategory.identifier = @"demo_category";
-    [demoCategory setActions:@[openAction, noAction, replyAction] forContext:UIUserNotificationActionContextDefault];
+    banCategory.identifier = @"ban_category";
+    [demoCategory setActions:@[replyAction] forContext:UIUserNotificationActionContextDefault];
     [demoCategory setActions:@[openAction, replyAction] forContext:UIUserNotificationActionContextMinimal];
+    [banCategory setActions:@[noAction] forContext:UIUserNotificationActionContextMinimal];
     
     
     if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         
         UIUserNotificationType userTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-        UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:userTypes categories:[NSSet setWithObject:demoCategory]];
+        UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:userTypes categories:[NSSet setWithObjects:demoCategory,banCategory, nil]];
         [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
         
     } else {
@@ -202,12 +204,12 @@
         } else {
             NSLog(@"ELSE ID:%@", identifier);
         }
-
+        
     } else if ([notification.alertTitle isEqualToString:kNewComment]){
         if ([identifier isEqualToString:@"shortResponse"]) {
             NSString *replyText = [responseInfo objectForKey:UIUserNotificationActionResponseTypedTextKey];
             Note *note = [Note MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"noteID == %@", [notification.userInfo objectForKey:@"noteID"]]];
-
+            
             [self saveReplyText:replyText forNote:note];
             
         } else if ([identifier isEqualToString:@"fullResponse"]) {
@@ -215,7 +217,9 @@
         } else {
             NSLog(@"ELSE ID:%@", identifier);
         }
-
+        
+    } else if ([notification.alertTitle isEqualToString:@"Ban"]){
+        NSLog(@"BAN ACT:%@",identifier);
     }
     
     completionHandler();
@@ -252,12 +256,12 @@
 
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    NSLog(@"didReceiveLocalN:%@", notification.alertTitle);
+//    NSLog(@"didReceiveLocalN:%@", notification.alertTitle);
     if ([notification.alertTitle isEqualToString:kInvite]) {
         [self showRegistrationDialog];
     } else if ([notification.alertTitle isEqualToString:kNewComment]){
         [self showNewComment:[self getSavedCommentFromNotification:notification]];
-    }
+    } else NSLog(@"Local Title:%@",notification.alertTitle);
 }
 
 //- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
@@ -273,7 +277,7 @@
     newComment.text = commentText;
     newComment.date = [NSDate date];
     newComment.theNote = relNote;
-
+    
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError *error) {
         NSLog(@"SAVED? %i",contextDidSave);
     }];
@@ -282,68 +286,134 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
-    Comment  *savedComment = [self saveCommentFromUserInfo:userInfo];
-    
-    NSString *cText = [[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] objectForKey:@"body"];
-    NSString *uID = [userInfo objectForKey:@"usrID"];
-    Note *note = [Note MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"noteID == %@", [userInfo objectForKey:@"noteID"]]];
-    NSString *forMsg = [NSString stringWithFormat:@"%@ пользователь прокомментировал запись '%@' следующим:'%@'",uID,note.name,cText];
-    
-    if ( application.applicationState != UIApplicationStateActive ) {
+    NSString *nTitle = [[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] objectForKey:@"title"];
+    if ([nTitle isEqualToString:@"Ban"]) {
         
-        NSLog(@"DIDRECeiveRemoteN:%@", userInfo);
-        UILocalNotification *localNotif = [UILocalNotification new];
-        localNotif.alertBody = forMsg;
-        localNotif.alertTitle = kNewComment;
-        localNotif.applicationIconBadgeNumber = 1;
-        localNotif.category = @"demo_category";
-        localNotif.userInfo = userInfo;
-        localNotif.soundName = UILocalNotificationDefaultSoundName;
-        [application cancelAllLocalNotifications];
-        [application presentLocalNotificationNow:localNotif];
-
+        NSString *isBan = [userInfo objectForKey:@"ban"];
+        if ([isBan isEqualToString:[self findBanInfo]])
+            return;
+        
+        
+        NSString *banReason = [[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] objectForKey:@"body"];
+        if ( application.applicationState != UIApplicationStateActive ) {
+            [self handleBanRequest:isBan];
+            UILocalNotification *localNotif = [UILocalNotification new];
+            localNotif.alertBody = banReason;
+            localNotif.alertTitle = @"Ban";
+            localNotif.applicationIconBadgeNumber = 1;
+            localNotif.category = @"ban_category";
+            localNotif.userInfo = userInfo;
+            localNotif.soundName = UILocalNotificationDefaultSoundName;
+            [application cancelAllLocalNotifications];
+            [application presentLocalNotificationNow:localNotif];
+        } else {
+            
+            UIAlertController * alert= [UIAlertController
+                                        alertControllerWithTitle:@"Ban"
+                                        message:banReason
+                                        preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* okAction = [UIAlertAction
+                                       actionWithTitle:@"Ok"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * action) {
+                                           
+                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                           [self handleBanRequest:isBan];
+                                           
+                                       }];
+            [alert addAction:okAction];
+            [ROOTVIEW presentViewController:alert animated:YES completion:nil];
+        }
     } else {
+        Comment  *savedComment = [self saveCommentFromUserInfo:userInfo];
         
-        UIAlertController * alert= [UIAlertController
-                                    alertControllerWithTitle:kNewComment
-                                    message:forMsg
-                                    preferredStyle:UIAlertControllerStyleAlert];
-        __weak UIAlertController *alertRef = alert;
-        UIAlertAction* reply = [UIAlertAction
-                             actionWithTitle:@"Reply"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action) {
-                                 NSString *text = ((UITextField *)[alertRef.textFields objectAtIndex:0]).text;
-                                 [self saveReplyText:text forNote:note];
-                                 [alert dismissViewControllerAnimated:YES completion:nil];
-                             }];
-        UIAlertAction* show = [UIAlertAction
-                             actionWithTitle:@"Show"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action) {
-                                 
-                                 [alert dismissViewControllerAnimated:YES completion:nil];
-                                 [self showNewComment:savedComment];
-                                 
-                             }];
-        UIAlertAction* cancel = [UIAlertAction
-                                 actionWithTitle:@"Cancel"
-                                 style:UIAlertActionStyleDefault
-                                 handler:^(UIAlertAction * action)
-                                 {
-                                     [alert dismissViewControllerAnimated:YES completion:nil];
-                                 }];
+        NSString *cText = [[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] objectForKey:@"body"];
+        NSString *uID = [userInfo objectForKey:@"usrID"];
+        Note *note = [Note MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"noteID == %@", [userInfo objectForKey:@"noteID"]]];
+        NSString *forMsg = [NSString stringWithFormat:@"%@ пользователь прокомментировал запись '%@' следующим:'%@'",uID,note.name,cText];
         
-        [alert addAction:reply];
-        [alert addAction:show];
-        [alert addAction:cancel];
-        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        }];
-        [ROOTVIEW presentViewController:alert animated:YES completion:nil];
-  
+        if ( application.applicationState != UIApplicationStateActive ) {
+            
+            NSLog(@"DIDRECeiveRemoteN:%@", userInfo);
+            UILocalNotification *localNotif = [UILocalNotification new];
+            localNotif.alertBody = forMsg;
+            localNotif.alertTitle = kNewComment;
+            localNotif.applicationIconBadgeNumber = 1;
+            localNotif.category = @"demo_category";
+            localNotif.userInfo = userInfo;
+            localNotif.soundName = UILocalNotificationDefaultSoundName;
+            [application cancelAllLocalNotifications];
+            [application presentLocalNotificationNow:localNotif];
+            
+        } else {
+            
+            UIAlertController * alert= [UIAlertController
+                                        alertControllerWithTitle:kNewComment
+                                        message:forMsg
+                                        preferredStyle:UIAlertControllerStyleAlert];
+            __weak UIAlertController *alertRef = alert;
+            UIAlertAction* reply = [UIAlertAction
+                                    actionWithTitle:@"Reply"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+                                        NSString *text = ((UITextField *)[alertRef.textFields objectAtIndex:0]).text;
+                                        [self saveReplyText:text forNote:note];
+                                        [alert dismissViewControllerAnimated:YES completion:nil];
+                                    }];
+            UIAlertAction* show = [UIAlertAction
+                                   actionWithTitle:@"Show"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {
+                                       
+                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                       [self showNewComment:savedComment];
+                                       
+                                   }];
+            UIAlertAction* cancel = [UIAlertAction
+                                     actionWithTitle:@"Cancel"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action)
+                                     {
+                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                     }];
+            
+            [alert addAction:reply];
+            [alert addAction:show];
+            [alert addAction:cancel];
+            [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            }];
+            [ROOTVIEW presentViewController:alert animated:YES completion:nil];
+            
+        }
     }
     completionHandler(UIBackgroundFetchResultNewData);
     
+}
+
+-(void)handleBanRequest:(NSString*)ban{
+    NSLog(@"isBAN:%@",ban);
+    KeyChainHelper *keychain = [KeyChainHelper sharedKeyChain];
+    NSString *key =@"BAN";
+    NSData * value = [ban dataUsingEncoding:NSUTF8StringEncoding];
+    if ([keychain find:@"BAN"] == nil) {
+        if([keychain insert:key :value]) NSLog(@"ban added!");
+    } else {
+        if([keychain update:key :value]) NSLog(@"ban changed!");
+    }
+    if ([ban isEqualToString:@"1"]) {
+        UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+        NSArray <UIViewController*> *viewControllers = [navigationController viewControllers];
+
+        if (viewControllers.count>1) {
+            navigationController.viewControllers = @[[viewControllers objectAtIndex:0]];
+        }
+    }
+    
+}
+
+-(NSString*)findBanInfo{
+    NSData * raw = [[KeyChainHelper sharedKeyChain] find:@"BAN"];
+    return [[NSString alloc] initWithData:raw encoding:NSUTF8StringEncoding];
 }
 
 -(void)showNewComment:(Comment*)comm{

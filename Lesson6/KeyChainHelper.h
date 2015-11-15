@@ -20,4 +20,8 @@
 
 -(NSData*)find:(NSString*)key;
 
+-(BOOL) update:(NSString*)key :(NSData*) data;
+
+-(BOOL) remove: (NSString*)key;
+
 @end

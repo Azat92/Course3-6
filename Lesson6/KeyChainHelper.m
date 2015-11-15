@@ -78,4 +78,31 @@
     return (__bridge NSData *)result;
 }
 
+-(BOOL) update:(NSString*)key :(NSData*) data
+{
+    NSMutableDictionary * dictKey =[self prepareDict:key];
+    
+    NSMutableDictionary * dictUpdate =[[NSMutableDictionary alloc] init];
+    [dictUpdate setObject:data forKey:(__bridge id)kSecValueData];
+    
+    OSStatus status = SecItemUpdate((__bridge CFDictionaryRef)dictKey, (__bridge CFDictionaryRef)dictUpdate);
+    if(errSecSuccess != status) {
+        NSLog(@"Unable add update with key =%@ error:%ld",key,status);
+    }
+    return (errSecSuccess == status);
+    
+    return YES;
+    
+}
+-(BOOL) remove: (NSString*)key
+{
+    NSMutableDictionary *dict = [self prepareDict:key];
+    OSStatus status = SecItemDelete((__bridge CFDictionaryRef)dict);
+    if( status != errSecSuccess) {
+        NSLog(@"Unable to remove item for key %@ with error:%ld",key,status);
+        return NO;
+    }
+    return  YES;
+}
+
 @end

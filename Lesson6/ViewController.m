@@ -54,11 +54,12 @@
 
 - (IBAction)NotesDidClick:(id)sender {
     NSData * data = [self searchNameInKeychain];
-    if(data == nil) [self showAccessErrorAlert];
-    else            [self performSegueWithIdentifier:@"toNotesID" sender:self];
+    NSData * rawBan = [[KeyChainHelper sharedKeyChain] find:@"BAN"];
+    NSString *ban = [[NSString alloc] initWithData:rawBan encoding:NSUTF8StringEncoding];
     
-
-
+    if ((data==nil) || ([ban isEqualToString:@"1"])) [self showAccessErrorAlert];
+    else [self performSegueWithIdentifier:@"toNotesID" sender:self];
+    
 }
 
 @end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7519041A1BF8FBF200DF71BA /* payloadBan.json in Resources */ = {isa = PBXBuildFile; fileRef = 751904191BF8FBF200DF71BA /* payloadBan.json */; };
+		755FD7B91BF8F9C10053E2F1 /* payloadUnban.json in Resources */ = {isa = PBXBuildFile; fileRef = 755FD7B81BF8F9C10053E2F1 /* payloadUnban.json */; };
 		75A923951BF40FFF0028E0F5 /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A923941BF40FFF0028E0F5 /* NotesViewController.m */; };
 		75A923981BF4181B0028E0F5 /* NotesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75A923961BF4181B0028E0F5 /* NotesModel.xcdatamodeld */; };
 		75A923A21BF41B630028E0F5 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A9239C1BF41B630028E0F5 /* Note.m */; };
@@ -19,7 +21,7 @@
 		75A923B71BF45B300028E0F5 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A923B61BF45B300028E0F5 /* CommentCell.xib */; };
 		75A923B91BF486820028E0F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A923B81BF486820028E0F5 /* Security.framework */; };
 		75A923BC1BF487340028E0F5 /* KeyChainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A923BB1BF487340028E0F5 /* KeyChainHelper.m */; };
-		75A923BE1BF504260028E0F5 /* payload2.json in Resources */ = {isa = PBXBuildFile; fileRef = 75A923BD1BF504260028E0F5 /* payload2.json */; };
+		75A923BE1BF504260028E0F5 /* payloadComment.json in Resources */ = {isa = PBXBuildFile; fileRef = 75A923BD1BF504260028E0F5 /* payloadComment.json */; };
 		75A923C11BF5080E0028E0F5 /* Note+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A923C01BF5080E0028E0F5 /* Note+CoreDataProperties.m */; };
 		AA014CC41BEA2FD60044C817 /* NSData+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = AA014CC31BEA2FD60044C817 /* NSData+Custom.m */; };
 		AA014CD11BEA40170044C817 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA014CCF1BEA38580044C817 /* Localizable.strings */; };
@@ -35,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		0012447D00809D4D25CC0195 /* Pods-Lesson6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lesson6.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lesson6/Pods-Lesson6.release.xcconfig"; sourceTree = "<group>"; };
+		751904191BF8FBF200DF71BA /* payloadBan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = payloadBan.json; path = apns/payloadBan.json; sourceTree = SOURCE_ROOT; };
+		755FD7B81BF8F9C10053E2F1 /* payloadUnban.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = payloadUnban.json; path = apns/payloadUnban.json; sourceTree = SOURCE_ROOT; };
 		75A923931BF40FFF0028E0F5 /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
 		75A923941BF40FFF0028E0F5 /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
 		75A923971BF4181B0028E0F5 /* NotesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesModel.xcdatamodel; sourceTree = "<group>"; };
@@ -55,7 +59,7 @@
 		75A923B81BF486820028E0F5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		75A923BA1BF487340028E0F5 /* KeyChainHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainHelper.h; sourceTree = "<group>"; };
 		75A923BB1BF487340028E0F5 /* KeyChainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainHelper.m; sourceTree = "<group>"; };
-		75A923BD1BF504260028E0F5 /* payload2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = payload2.json; path = apns/payload2.json; sourceTree = SOURCE_ROOT; };
+		75A923BD1BF504260028E0F5 /* payloadComment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = payloadComment.json; path = apns/payloadComment.json; sourceTree = SOURCE_ROOT; };
 		75A923BF1BF5080E0028E0F5 /* Note+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataProperties.h"; sourceTree = "<group>"; };
 		75A923C01BF5080E0028E0F5 /* Note+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataProperties.m"; sourceTree = "<group>"; };
 		907470135368BBD072BFAC78 /* Pods-Lesson6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lesson6.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lesson6/Pods-Lesson6.debug.xcconfig"; sourceTree = "<group>"; };
@@ -154,7 +158,9 @@
 		AA6718461BDD0253006858B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				75A923BD1BF504260028E0F5 /* payload2.json */,
+				751904191BF8FBF200DF71BA /* payloadBan.json */,
+				755FD7B81BF8F9C10053E2F1 /* payloadUnban.json */,
+				75A923BD1BF504260028E0F5 /* payloadComment.json */,
 				AA2250AD1BEBCA3E0095920E /* payload.json */,
 				AA014CC21BEA2FD60044C817 /* NSData+Custom.h */,
 				AA014CC31BEA2FD60044C817 /* NSData+Custom.m */,
@@ -247,8 +253,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA014CD11BEA40170044C817 /* Localizable.strings in Resources */,
-				75A923BE1BF504260028E0F5 /* payload2.json in Resources */,
+				75A923BE1BF504260028E0F5 /* payloadComment.json in Resources */,
+				755FD7B91BF8F9C10053E2F1 /* payloadUnban.json in Resources */,
 				AA6718561BDD0253006858B4 /* LaunchScreen.storyboard in Resources */,
+				7519041A1BF8FBF200DF71BA /* payloadBan.json in Resources */,
 				AA6718531BDD0253006858B4 /* Assets.xcassets in Resources */,
 				AA2250AE1BEBCA3E0095920E /* payload.json in Resources */,
 				AA6718511BDD0253006858B4 /* Main.storyboard in Resources */,
