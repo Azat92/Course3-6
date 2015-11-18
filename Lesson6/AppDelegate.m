@@ -33,14 +33,14 @@
     
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Cache.sqlite"];
     
-    //        [self deleteAllCache];
+    //   [self deleteAllCache];
     [self addTestObjects];
     
     [self setupNotifications];
-    
-#if DEBUG
-    [application listenForRemoteNotifications];
-#endif
+//    
+//#if DEBUG
+//    [application listenForRemoteNotifications];
+//#endif
     
     if (launchOptions!=nil) {
         NSDictionary *lNotification = launchOptions[UIApplicationLaunchOptionsLocalNotificationKey];
@@ -447,8 +447,8 @@
     NSMutableString *token = [NSMutableString string];
     for (int i = 0; i < [deviceToken length]; i++)
         [token appendFormat:@"%02.2hhX", data[i]];
-    NSLog(@"Token = %@", token);
-    
+    _dToken = [NSString stringWithString:token];
+    NSLog(@"Token = %@", _dToken);
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

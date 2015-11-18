@@ -460,7 +460,7 @@
 				INFOPLIST_FILE = Lesson6/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = azatalmeev.Lesson6;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.kpfu.push;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -476,7 +476,7 @@
 				INFOPLIST_FILE = Lesson6/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = azatalmeev.Lesson6;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.kpfu.push;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
