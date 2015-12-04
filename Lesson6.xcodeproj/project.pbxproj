@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7519041A1BF8FBF200DF71BA /* payloadBan.json in Resources */ = {isa = PBXBuildFile; fileRef = 751904191BF8FBF200DF71BA /* payloadBan.json */; };
+		755FD7B91BF8F9C10053E2F1 /* payloadUnban.json in Resources */ = {isa = PBXBuildFile; fileRef = 755FD7B81BF8F9C10053E2F1 /* payloadUnban.json */; };
+		75A923951BF40FFF0028E0F5 /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A923941BF40FFF0028E0F5 /* NotesViewController.m */; };
+		75A923981BF4181B0028E0F5 /* NotesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75A923961BF4181B0028E0F5 /* NotesModel.xcdatamodeld */; };
+		75A923A21BF41B630028E0F5 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A9239C1BF41B630028E0F5 /* Note.m */; };
+		75A923A41BF41B630028E0F5 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A923A01BF41B630028E0F5 /* Comment.m */; };
+		75A923A71BF41CBE0028E0F5 /* CoreDataStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A923A61BF41CBD0028E0F5 /* CoreDataStorageManager.m */; };
+		75A923AA1BF41E8D0028E0F5 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A923A91BF41E8D0028E0F5 /* NoteCell.m */; };
+		75A923AC1BF41ECE0028E0F5 /* NoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A923AB1BF41ECE0028E0F5 /* NoteCell.xib */; };
+		75A923B21BF45A010028E0F5 /* Comment+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A923B11BF45A010028E0F5 /* Comment+CoreDataProperties.m */; };
+		75A923B51BF45B130028E0F5 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A923B41BF45B130028E0F5 /* CommentCell.m */; };
+		75A923B71BF45B300028E0F5 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A923B61BF45B300028E0F5 /* CommentCell.xib */; };
+		75A923B91BF486820028E0F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A923B81BF486820028E0F5 /* Security.framework */; };
+		75A923BC1BF487340028E0F5 /* KeyChainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A923BB1BF487340028E0F5 /* KeyChainHelper.m */; };
+		75A923BE1BF504260028E0F5 /* payloadComment.json in Resources */ = {isa = PBXBuildFile; fileRef = 75A923BD1BF504260028E0F5 /* payloadComment.json */; };
+		75A923C11BF5080E0028E0F5 /* Note+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A923C01BF5080E0028E0F5 /* Note+CoreDataProperties.m */; };
 		AA014CC41BEA2FD60044C817 /* NSData+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = AA014CC31BEA2FD60044C817 /* NSData+Custom.m */; };
 		AA014CD11BEA40170044C817 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA014CCF1BEA38580044C817 /* Localizable.strings */; };
 		AA2250AE1BEBCA3E0095920E /* payload.json in Resources */ = {isa = PBXBuildFile; fileRef = AA2250AD1BEBCA3E0095920E /* payload.json */; };
@@ -16,9 +32,37 @@
 		AA6718511BDD0253006858B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA67184F1BDD0253006858B4 /* Main.storyboard */; };
 		AA6718531BDD0253006858B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA6718521BDD0253006858B4 /* Assets.xcassets */; };
 		AA6718561BDD0253006858B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA6718541BDD0253006858B4 /* LaunchScreen.storyboard */; };
+		C46586B0705BB7F42A131CD1 /* libPods-Lesson6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1CD75E63E330DD34F4FDC1B /* libPods-Lesson6.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0012447D00809D4D25CC0195 /* Pods-Lesson6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lesson6.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lesson6/Pods-Lesson6.release.xcconfig"; sourceTree = "<group>"; };
+		751904191BF8FBF200DF71BA /* payloadBan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = payloadBan.json; path = apns/payloadBan.json; sourceTree = SOURCE_ROOT; };
+		755FD7B81BF8F9C10053E2F1 /* payloadUnban.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = payloadUnban.json; path = apns/payloadUnban.json; sourceTree = SOURCE_ROOT; };
+		75A923931BF40FFF0028E0F5 /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
+		75A923941BF40FFF0028E0F5 /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
+		75A923971BF4181B0028E0F5 /* NotesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesModel.xcdatamodel; sourceTree = "<group>"; };
+		75A9239B1BF41B620028E0F5 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		75A9239C1BF41B630028E0F5 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		75A9239F1BF41B630028E0F5 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		75A923A01BF41B630028E0F5 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		75A923A51BF41CBD0028E0F5 /* CoreDataStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStorageManager.h; sourceTree = "<group>"; };
+		75A923A61BF41CBD0028E0F5 /* CoreDataStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStorageManager.m; sourceTree = "<group>"; };
+		75A923A81BF41E8D0028E0F5 /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
+		75A923A91BF41E8D0028E0F5 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
+		75A923AB1BF41ECE0028E0F5 /* NoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteCell.xib; sourceTree = "<group>"; };
+		75A923B01BF45A010028E0F5 /* Comment+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Comment+CoreDataProperties.h"; sourceTree = "<group>"; };
+		75A923B11BF45A010028E0F5 /* Comment+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Comment+CoreDataProperties.m"; sourceTree = "<group>"; };
+		75A923B31BF45B130028E0F5 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		75A923B41BF45B130028E0F5 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		75A923B61BF45B300028E0F5 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		75A923B81BF486820028E0F5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		75A923BA1BF487340028E0F5 /* KeyChainHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainHelper.h; sourceTree = "<group>"; };
+		75A923BB1BF487340028E0F5 /* KeyChainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainHelper.m; sourceTree = "<group>"; };
+		75A923BD1BF504260028E0F5 /* payloadComment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = payloadComment.json; path = apns/payloadComment.json; sourceTree = SOURCE_ROOT; };
+		75A923BF1BF5080E0028E0F5 /* Note+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataProperties.h"; sourceTree = "<group>"; };
+		75A923C01BF5080E0028E0F5 /* Note+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataProperties.m"; sourceTree = "<group>"; };
+		907470135368BBD072BFAC78 /* Pods-Lesson6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lesson6.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lesson6/Pods-Lesson6.debug.xcconfig"; sourceTree = "<group>"; };
 		AA014CC21BEA2FD60044C817 /* NSData+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Custom.h"; sourceTree = "<group>"; };
 		AA014CC31BEA2FD60044C817 /* NSData+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Custom.m"; sourceTree = "<group>"; };
 		AA014CCE1BEA38580044C817 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -34,6 +78,7 @@
 		AA6718521BDD0253006858B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA6718551BDD0253006858B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA6718571BDD0253006858B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1CD75E63E330DD34F4FDC1B /* libPods-Lesson6.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lesson6.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,17 +86,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75A923B91BF486820028E0F5 /* Security.framework in Frameworks */,
+				C46586B0705BB7F42A131CD1 /* libPods-Lesson6.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B13036AA750BE3121F96A2B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				907470135368BBD072BFAC78 /* Pods-Lesson6.debug.xcconfig */,
+				0012447D00809D4D25CC0195 /* Pods-Lesson6.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AA67183A1BDD0253006858B4 = {
 			isa = PBXGroup;
 			children = (
 				AA6718451BDD0253006858B4 /* Lesson6 */,
 				AA6718441BDD0253006858B4 /* Products */,
+				3B13036AA750BE3121F96A2B /* Pods */,
+				F0D2DD15EB26160BC1956666 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,11 +124,32 @@
 		AA6718451BDD0253006858B4 /* Lesson6 */ = {
 			isa = PBXGroup;
 			children = (
+				75A923BF1BF5080E0028E0F5 /* Note+CoreDataProperties.h */,
+				75A923C01BF5080E0028E0F5 /* Note+CoreDataProperties.m */,
+				75A923B01BF45A010028E0F5 /* Comment+CoreDataProperties.h */,
+				75A923B11BF45A010028E0F5 /* Comment+CoreDataProperties.m */,
+				75A9239B1BF41B620028E0F5 /* Note.h */,
+				75A9239C1BF41B630028E0F5 /* Note.m */,
+				75A9239F1BF41B630028E0F5 /* Comment.h */,
+				75A923A01BF41B630028E0F5 /* Comment.m */,
 				AA67184F1BDD0253006858B4 /* Main.storyboard */,
 				AA6718491BDD0253006858B4 /* AppDelegate.h */,
 				AA67184A1BDD0253006858B4 /* AppDelegate.m */,
+				75A923BA1BF487340028E0F5 /* KeyChainHelper.h */,
+				75A923BB1BF487340028E0F5 /* KeyChainHelper.m */,
 				AA67184C1BDD0253006858B4 /* ViewController.h */,
 				AA67184D1BDD0253006858B4 /* ViewController.m */,
+				75A923961BF4181B0028E0F5 /* NotesModel.xcdatamodeld */,
+				75A923931BF40FFF0028E0F5 /* NotesViewController.h */,
+				75A923941BF40FFF0028E0F5 /* NotesViewController.m */,
+				75A923A51BF41CBD0028E0F5 /* CoreDataStorageManager.h */,
+				75A923A61BF41CBD0028E0F5 /* CoreDataStorageManager.m */,
+				75A923B31BF45B130028E0F5 /* CommentCell.h */,
+				75A923B41BF45B130028E0F5 /* CommentCell.m */,
+				75A923B61BF45B300028E0F5 /* CommentCell.xib */,
+				75A923A81BF41E8D0028E0F5 /* NoteCell.h */,
+				75A923A91BF41E8D0028E0F5 /* NoteCell.m */,
+				75A923AB1BF41ECE0028E0F5 /* NoteCell.xib */,
 				AA6718461BDD0253006858B4 /* Supporting Files */,
 			);
 			path = Lesson6;
@@ -79,6 +158,9 @@
 		AA6718461BDD0253006858B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				751904191BF8FBF200DF71BA /* payloadBan.json */,
+				755FD7B81BF8F9C10053E2F1 /* payloadUnban.json */,
+				75A923BD1BF504260028E0F5 /* payloadComment.json */,
 				AA2250AD1BEBCA3E0095920E /* payload.json */,
 				AA014CC21BEA2FD60044C817 /* NSData+Custom.h */,
 				AA014CC31BEA2FD60044C817 /* NSData+Custom.m */,
@@ -91,6 +173,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F0D2DD15EB26160BC1956666 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75A923B81BF486820028E0F5 /* Security.framework */,
+				B1CD75E63E330DD34F4FDC1B /* libPods-Lesson6.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -98,9 +189,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA67185A1BDD0253006858B4 /* Build configuration list for PBXNativeTarget "Lesson6" */;
 			buildPhases = (
+				C622C572FF5CD8F9FD682F9A /* Check Pods Manifest.lock */,
 				AA67183F1BDD0253006858B4 /* Sources */,
 				AA6718401BDD0253006858B4 /* Frameworks */,
 				AA6718411BDD0253006858B4 /* Resources */,
+				D8904B07F9DF2FB4B4BAAB35 /* Embed Pods Frameworks */,
+				B61B7EE194DFEA60BC7A4AF7 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -122,7 +216,7 @@
 				TargetAttributes = {
 					AA6718421BDD0253006858B4 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 56DQMCNC2P;
+						DevelopmentTeam = 33NC89QWWR;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -159,24 +253,87 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA014CD11BEA40170044C817 /* Localizable.strings in Resources */,
+				75A923BE1BF504260028E0F5 /* payloadComment.json in Resources */,
+				755FD7B91BF8F9C10053E2F1 /* payloadUnban.json in Resources */,
 				AA6718561BDD0253006858B4 /* LaunchScreen.storyboard in Resources */,
+				7519041A1BF8FBF200DF71BA /* payloadBan.json in Resources */,
 				AA6718531BDD0253006858B4 /* Assets.xcassets in Resources */,
 				AA2250AE1BEBCA3E0095920E /* payload.json in Resources */,
 				AA6718511BDD0253006858B4 /* Main.storyboard in Resources */,
+				75A923AC1BF41ECE0028E0F5 /* NoteCell.xib in Resources */,
+				75A923B71BF45B300028E0F5 /* CommentCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B61B7EE194DFEA60BC7A4AF7 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lesson6/Pods-Lesson6-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C622C572FF5CD8F9FD682F9A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D8904B07F9DF2FB4B4BAAB35 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lesson6/Pods-Lesson6-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AA67183F1BDD0253006858B4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75A923951BF40FFF0028E0F5 /* NotesViewController.m in Sources */,
+				75A923B21BF45A010028E0F5 /* Comment+CoreDataProperties.m in Sources */,
 				AA67184E1BDD0253006858B4 /* ViewController.m in Sources */,
+				75A923A41BF41B630028E0F5 /* Comment.m in Sources */,
 				AA67184B1BDD0253006858B4 /* AppDelegate.m in Sources */,
+				75A923B51BF45B130028E0F5 /* CommentCell.m in Sources */,
+				75A923BC1BF487340028E0F5 /* KeyChainHelper.m in Sources */,
+				75A923981BF4181B0028E0F5 /* NotesModel.xcdatamodeld in Sources */,
+				75A923AA1BF41E8D0028E0F5 /* NoteCell.m in Sources */,
+				75A923C11BF5080E0028E0F5 /* Note+CoreDataProperties.m in Sources */,
 				AA014CC41BEA2FD60044C817 /* NSData+Custom.m in Sources */,
+				75A923A71BF41CBE0028E0F5 /* CoreDataStorageManager.m in Sources */,
 				AA6718481BDD0253006858B4 /* main.m in Sources */,
+				75A923A21BF41B630028E0F5 /* Note.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +452,7 @@
 		};
 		AA67185B1BDD0253006858B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 907470135368BBD072BFAC78 /* Pods-Lesson6.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -302,7 +460,7 @@
 				INFOPLIST_FILE = Lesson6/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = azatalmeev.Lesson6;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.kpfu.push;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -310,6 +468,7 @@
 		};
 		AA67185C1BDD0253006858B4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0012447D00809D4D25CC0195 /* Pods-Lesson6.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -317,7 +476,7 @@
 				INFOPLIST_FILE = Lesson6/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = azatalmeev.Lesson6;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.kpfu.push;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -345,6 +504,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		75A923961BF4181B0028E0F5 /* NotesModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				75A923971BF4181B0028E0F5 /* NotesModel.xcdatamodel */,
+			);
+			currentVersion = 75A923971BF4181B0028E0F5 /* NotesModel.xcdatamodel */;
+			path = NotesModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AA67183B1BDD0253006858B4 /* Project object */;
 }
